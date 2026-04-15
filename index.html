@@ -80,35 +80,39 @@
         }
 
        /* Update bagian ini di CSS kamu */
-.bg-slideshow div::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%; /* Ubah jadi 100% pas */
-    background-size: cover;
-    background-position: center;
-    filter: blur(20px) brightness(0.4);
-    z-index: 1;
-}
+        .bg-slideshow div::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%; /* Ubah jadi 100% pas */
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px) brightness(0.4);
+            z-index: 1;
+        }
 
-.bg-slideshow div::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%; /* Ubah jadi 100% pas */
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(0.8px) brightness(0.7);
-    z-index: 2;
-}
-        /* Efek Transisi Fading */
+        .bg-slideshow div::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%; /* Ubah jadi 100% pas */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(0.8px) brightness(0.7);
+            z-index: 2;
+        }
+                /* --- PERBAIKAN ANIMASI SLIDESHOW --- */
+
         .bg-slideshow div {
             position: absolute;
             width: 100%; height: 100%;
             opacity: 0;
-            animation: slideAnimation 20s infinite;
+            /* DURASI DIUBAH: 11 foto x 5 detik = 55s */
+            animation: slideAnimation 55s infinite; 
         }
+
+        /* Tips: Pastikan background-image tetap ada di bawah masing-masing nth-child ya */
 
         /* Atur Urutan dan File Foto untuk Kedua Lapis */
         /* Foto 1 */
@@ -131,13 +135,48 @@
         .bg-slideshow div:nth-child(4)::after { background-image: url('wed4.jpeg'); }
         .bg-slideshow div:nth-child(4) { animation-delay: 15s; }
 
-        /* Animasi Transisi (Sama seperti sebelumnya) */
+        /* Foto 5 */
+        .bg-slideshow div:nth-child(5)::before { background-image: url('wed5.jpeg'); }
+        .bg-slideshow div:nth-child(5)::after { background-image: url('wed5.jpeg'); }
+        .bg-slideshow div:nth-child(5) { animation-delay: 20s; }
+
+        /* Foto 6 */
+        .bg-slideshow div:nth-child(6)::before { background-image: url('wed6.jpeg'); }
+        .bg-slideshow div:nth-child(6)::after { background-image: url('wed6.jpeg'); }
+        .bg-slideshow div:nth-child(6) { animation-delay: 25s; }
+
+        /* Foto 7 */
+        .bg-slideshow div:nth-child(7)::before { background-image: url('wed7.jpg'); }
+        .bg-slideshow div:nth-child(7)::after { background-image: url('wed7.jpg'); }
+        .bg-slideshow div:nth-child(7) { animation-delay: 30s; }
+
+        /* Foto 8 */
+        .bg-slideshow div:nth-child(8)::before { background-image: url('wed8.jpg'); }
+        .bg-slideshow div:nth-child(8)::after { background-image: url('wed8.jpg'); }
+        .bg-slideshow div:nth-child(8) { animation-delay: 35s; }
+
+        /* Foto 9 */
+        .bg-slideshow div:nth-child(9)::before { background-image: url('wed9.jpg'); }
+        .bg-slideshow div:nth-child(9)::after { background-image: url('wed9.jpg'); }
+        .bg-slideshow div:nth-child(9) { animation-delay: 40s; }
+
+        /* Foto 10 */
+        .bg-slideshow div:nth-child(10)::before { background-image: url('wed10.jpg'); }
+        .bg-slideshow div:nth-child(10)::after { background-image: url('wed10.jpg'); }
+        .bg-slideshow div:nth-child(10) { animation-delay: 45s; }
+
+        /* Foto 11 */
+        .bg-slideshow div:nth-child(11)::before { background-image: url('wed11.jpg'); }
+        .bg-slideshow div:nth-child(11)::after { background-image: url('wed11.jpg'); }
+        .bg-slideshow div:nth-child(11) { animation-delay: 50s; }
+
+        /* --- PERBAIKAN PEMBAGIAN WAKTU (KEYFRAMES) --- */
         @keyframes slideAnimation {
             0% { opacity: 0; }
-            10% { opacity: 1; }
-            25% { opacity: 1; }
-            35% { opacity: 0; }
-            100% { opacity: 0; }
+            2% { opacity: 1; }   /* Foto mulai muncul jelas */
+            9% { opacity: 1; }   /* Foto diam/tampil selama beberapa detik */
+            11% { opacity: 0; }  /* Foto mulai menghilang (fade out) */
+            100% { opacity: 0; } /* Sisa waktu untuk foto lainnya antre */
         }
 
         /* Membuat Bagian Welome dan Galeri Tetap Punya Warna Dasar sebagai Sekat */
@@ -168,10 +207,9 @@
    </style>
 </head>
 <body>
-<div class="bg-slideshow">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div class="bg-slideshow">
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
         <div></div>
     </div>
 
@@ -227,24 +265,37 @@
                 <div class="nama-mempelai">Markorius Andi, S.Ap</div>
                 <p style="font-size: 14px;">Putra kedua dari Bapak Indiarno <br> & Ibu Yusta Ahir</p>
             </div>
-            <div class="judul-script" style="font-size: 35px; margin: 30px 0;">&</div>
-            <div data-aos="fade-left">
-                <img src="foto-perempuan.jpg" class="foto-lingkaran">
+           <div data-aos="fade-left">
+                <img src="ppw.jpeg" class="foto-lingkaran">
                 <div class="nama-mempelai">Natasya Geraeni Barango, S.Pt</div>
                 <p style="font-size: 14px;">Putri kedua dari Bapak Erik Suheri <br> & Ibu Yustina Muden</p>
             </div>
         </section>
 
         <section style="background: rgba(0,0,0,0.35);">
-            <div class="judul-script" data-aos="fade-up">Acara Suci</div>
-            <div class="card-box" data-aos="flip-up">
-                <h3 style="color: var(--gold-accent); font-family: 'Cinzel';">Pemberkatan Nikah</h3>
-                <p> Gereja Santa Maria rosario suci tapang Sambas, Desa tapang Semadak, kecamatan Sekadau Hilir, Kabupaten Sekadau, Kalimatan Barat <br> 10:00 WIB - Selesai</p>
-                <hr style="border: 0.5px dashed var(--gold-accent); margin: 25px 0;">
-                <h3 style="color: var(--gold-accent); font-family: 'Cinzel';">Acara Adat</h3>
-                <p> Kediaman mempelai pria <br> 10:00 WIB - Selesai</p>
-            </div>
-        </section>
+    <div class="judul-script" data-aos="fade-up">Rangkaian Acara</div>
+    <div class="card-box" data-aos="flip-up">
+        
+        <h3 style="color: var(--gold-accent); font-family: 'Cinzel'; margin-bottom: 5px;">Sakramen Perkawinan</h3>
+        <p style="font-weight: bold; color: var(--soft-gold); margin-bottom: 10px;">Sabtu, 27 Juni 2026 <br> 10:00 WIB - Selesai</p>
+        <p style="font-size: 13px; line-height: 1.6;">Gereja Santa Maria Rosario Suci Tapang Sambas, Desa Tapang Semadak, Kec. Sekadau Hilir, Kab. Sekadau</p>
+        
+        <a href="https://maps.google.com/?cid=18354499470997255600&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank">
+            <button class="btn-gold" style="padding: 8px 15px; font-size: 11px; margin-top: 10px;">📍 Lihat Lokasi Gereja</button>
+        </a>
+
+        <hr style="border: 0.5px dashed var(--gold-accent); margin: 30px 0;">
+
+        <h3 style="color: var(--gold-accent); font-family: 'Cinzel'; margin-bottom: 5px;">Acara Adat</h3>
+        <p style="font-weight: bold; color: var(--soft-gold); margin-bottom: 10px;">Minggu, 28 Juni 2026 <br> 10:00 WIB - Selesai</p>
+        <p style="font-size: 13px; line-height: 1.6;">Rumah kediaman mempelai pria, bapak Indiarno, Jalan raya trans Kalimantan, Dusun Tapang Sambas,  Desa Tapang Semadak, Kabupaten Sekadau</p>
+        
+        <a href="https://maps.app.goo.gl/L3nyAk3vERGv1nne9" target="_blank">
+            <button class="btn-gold" style="padding: 8px 15px; font-size: 11px; margin-top: 10px;">📍 Lihat Lokasi Rumah</button>
+        </a>
+
+    </div>
+</section>
 
         <section>
             <div class="judul-script" data-aos="fade-up">Perjalanan Cinta Kami</div>
@@ -267,6 +318,11 @@
                 <img src="wed2.jpeg" style="width: 100%; height: 250px; object-fit: cover; border: 2px solid white;">
             </div>
             <img src="wed3.jpeg" style="width: 85%; max-width: 400px; border: 5px solid white;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 85%; max-width: 400px; margin: 0 auto 10px;">
+                <img src="wed8.jpg" style="width: 100%; height: 250px; object-fit: cover; border: 2px solid white;">
+                <img src="wed9.jpg" style="width: 100%; height: 250px; object-fit: cover; border: 2px solid white;">
+            </div>
+            <img src="wed6.jpeg" style="width: 85%; max-width: 400px; border: 5px solid white;">
         </section>
 
         <section>
